@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>JavaScript ToDo App</title>
+    <link rel="icon" type="image/x-icon" href="TBTT-logo.png" />
+  </head>
+  <body>
+    <h1>JavaScript ToDo App</h1>
+    <div class="add_objectives">
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Your goal"
+          id="objective"
+        />
+        <br />
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Type of priority"
+          id="priority"
+        />
+        <button class="btn btn-primary" onclick="addGoal()">Add to list</button>
+      </div>
+    </div>
+    <div class="objectives">
+      <div>
+        <div class="card">
+          <div class="card-header">
+            <h2>Priority 1</h2>
+          </div>
+          <ul class="list-group list-group-flush" id="priority_1"></ul>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="card-header">
+            <h2>Priority 2</h2>
+          </div>
+          <ul class="list-group list-group-flush" id="priority_2"></ul>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="card-header">
+            <h2>Priority 3</h2>
+          </div>
+          <ul class="list-group list-group-flush" id="priority_3"></ul>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function addGoal() {
+        let objective = document.getElementById("objective").value;
+        let priority = document.getElementById("priority").value;
+
+        if (objective.length === 0) {
+          //daca utilizatorul nu a pus
+          alert("Please add a goal!"); // nimic in campul cu
+          return; //obiective
+        } else if (parseInt(priority) === 0 || !priority) {
+          alert("Please choose the priority!");
+          alert("The priority must be 1, 2 or 3!"); // daca nu a pus
+          return; //nimic la prioritate
+        } else {
+          //daca a pus corect, stergem lucrurile inserate
+          document.getElementById("objective").value = "";
+          document.getElementById("priority").value = "";
+        }
+        // cream elem care trebuie adaugat in lista
+        let li = document.createElement("li");
+        let text = document.createTextNode(objective);
+        li.appendChild(text);
+        li.classList.add("list-group-item");
+
+        //verificam inputul de la utilizator si vedem care prioritate a fost introdusa
+        let list;
+
+        switch (parseInt(priority)) {
+          case 1:
+            list = document.getElementById("priority_1");
+            break;
+          case 2:
+            list = document.getElementById("priority_2");
+            break;
+          case 3:
+            list = document.getElementById("priority_3");
+            break;
+          default:
+            alert("Please add an existing priority!");
+            alert("The priority must be 1, 2 or 3!");
+            return;
+        }
+
+        //adaugam elem in lista aleasa
+
+        list.appendChild(li);
+
+        //stergem elem din lista
+        li.addEventListener("click", function () {
+          li.remove();
+        });
+      }
+    </script>
+  </body>
+</html>

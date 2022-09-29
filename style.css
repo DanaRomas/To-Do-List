@@ -1,0 +1,33 @@
+.add_objectives {
+  margin: 35px;
+}
+
+.btn {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  text-align: center;
+  padding-top: 25px;
+}
+
+.objectives {
+  margin: 25px;
+}
+
+.objectives > div {
+  width: 33.33%;
+  float: left;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.objectives > div h2 {
+  text-align: center;
+}
+
+.objectives > div li:hover {
+  background-color: #b19cda;
+  cursor: pointer;
+}
